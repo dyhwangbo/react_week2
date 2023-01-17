@@ -1,20 +1,23 @@
-import { useMemo, useState } from 'react';
 import moment from "moment";
-import InputText from "../../../components/common/input/inputText";
+import { useState } from 'react';
+
+import ChartSection from '../../../components/chart/chartSection';
+import { RangeDatePicker } from '../../../components/common/datepicker';
 import SelectBoxComponent from "../../../components/common/selectBox/selectBoxComponent";
 import ContentHeader from "../../../components/layouts/header/contentHeader";
 import PageSearchFilter from "../../../components/searchFilter/pageSearchFilter";
-import { RangeDatePicker } from '../../../components/common/datepicker';
-import ChartSection from '../../../components/chart/chartSection';
 
 //테스트 데이터 임포트
-import dataList from '../../../testDatas/reportData.json';
+import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import GridSection from '../../../components/agGrid/gridSection';
-import { numberFormat } from './advReportFunctions';
-import { ICellRendererParams, ColDef } from 'ag-grid-community';
+import { InnerInput } from '../../../components/common/input';
+import dataList from '../../../testDatas/reportData.json';
+import { dateFormat, numberFormat } from './advReportFunctions';
+
 /** searchDiv 리스트 생성 */
 const searchDivOptions = [{name:"광고주", value: "adv"},{name:"상품번호", value: "itemNo"},{name:"광고그룹명", value: "adGroupName"},{name:"키워드명", value: "kwdName"}];
 /** 조회 필터(단독) + 데이터 그리드 1개 */
+
 const AdvReport02 = () => {
     //조회 필터에 사용될 컴포넌트 선언
     const [ searchDiv, setSearchDiv ] = useState("");
@@ -29,15 +32,14 @@ const AdvReport02 = () => {
     const searchFilterOptions = [
         {
             title: "템플릿 검색 기준",
-            component: [<SelectBoxComponent key={"searchDiv"} width={300} defaultValue={"itemNo"} placeholder={"홀더홀더"}optionList={searchDivOptions} changeFn={setSearchDiv} />]
+            component: [<SelectBoxComponent width={300} defaultValue={"itemNo"} placeholder={"홀더홀더"}optionList={searchDivOptions} changeFn={setSearchDiv} />]
         },{
             title: "검색어 입력",
-            component: [<InputText key={"searchText"} placeholder={"검색어 입려억~~"} value={searchText} onChange={setSearchText} />]
+            component: [<InnerInput name={"searchText"} placeholder={"검색어 입려억~~"} value={searchText} onChange={setSearchText} />]
+        },{
+            title: "기간 조해22",
+            component: [<RangeDatePicker key={"adReport02RangeDate"} startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate}/>]
         }
-        , {
-                title: "기간 조해22",
-                component: [<RangeDatePicker key={"adReport02RangeDate"} startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate}/>]
-            }
     ]; 
     
     const searchEvent = () => {
@@ -51,7 +53,8 @@ const AdvReport02 = () => {
         // apiCall.post("/post/searchAdGroupReport", body)
         // .then(res => { setReportData(res.data)})
         // .catch(error => message.error(SEARCH_SYSTEM_ERROR_MSG));
-        setReportData(dataList);
+        
+        setReportData(dataList.splice(0,30).reverse());
     }
 
     //TD에 라디오 생성하는 기능
@@ -66,7 +69,8 @@ const AdvReport02 = () => {
     }
  
     const [columnDefs] = useState<ColDef[]>([
-        { field: 'basicDate', headerName: '날짜', headerClass: "asdfasdf", headerCheckboxSelection: true,checkboxSelection: true, cellStyle: { textAlign: 'center'} },
+        { field: 'basicDate', headerName: '날짜', headerClass: "asdfasdf", headerCheckboxSelection: true, checkboxSelection: true, 
+        cellStyle: { textAlign: 'center'}, valueFormatter: (params) => dateFormat(params, ".") },
         { field: 'impCnt', headerName: '노출 수', cellStyle: { textAlign: 'right'}, valueFormatter: numberFormat, 
         headerComponentParams: {
             template:
