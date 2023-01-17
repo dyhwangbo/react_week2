@@ -4,10 +4,9 @@ import { useState } from 'react';
 
 /** 사이드바 내의 알림 */
 
-const SidebarNotification = () => {
+const SidebarNotification = ({alrams}) => {
     //사이드바의 알림 Drawer 기능 처리
     const [visibleDrawer, setVisibleDrawer] = useState(false);
-    
     return (
         <>
         <a className="util noti" href="#!" onClick={(e) => {setVisibleDrawer(true)}}>
@@ -23,9 +22,12 @@ const SidebarNotification = () => {
             onClose={() => setVisibleDrawer(false)}
             visible={visibleDrawer}
         >
-        <p>여기에</p>
-        <p>알람창이 나타난다</p>
-        <p>뿅뿅</p>
+            {alrams.map((alram) => {
+                return <div key={alram.noticeId}>
+                    <p>{alram.title}</p>
+                    <p>{alram.description}</p>
+                </div>
+            })}
         </Drawer>
         </> 
     )

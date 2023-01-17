@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-has-content */
 
 import ReactTooltip from 'react-tooltip';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { Button, notification, Tabs, Upload, UploadFile } from 'antd';
 
 import { DatePicker } from 'antd';
@@ -18,8 +21,6 @@ import { Modal } from "antd";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 
-import { AgGridReact } from 'ag-grid-react';
-import { ICellRendererParams, ColDef } from 'ag-grid-community';
 import AgGridExample from './agGridExample';
 import EmptyAgGridExample from './emptyAgGridExample';
 // import CustomTooltip from './CustomTooltip';

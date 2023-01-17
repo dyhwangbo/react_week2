@@ -1,5 +1,6 @@
 /** 조회 필터의 항목별로 테두리를 감싸는 레이아웃 구조 */
 interface filterGroupInterface {
+    key: string,
     title: string,
     components: JSX.Element[]
 }
@@ -14,9 +15,9 @@ const FilterGroupLayout = (props: filterGroupInterface) => {
                 <div className="filter-box">
                     {props.components.map((component, index) => {
                         return (
-                        <div className="filter-col" key={component.key +"_"+ index}>
-                            {component}
-                        </div>
+                            <div className="filter-col" key={component.key +"_"+ index}>
+                                {component}
+                            </div>
                         )
                     })}
                 </div>

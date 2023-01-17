@@ -12,14 +12,13 @@ export const AuthContextProvider = props => {
   const userIsLoggedIn = !!token;
   
   //사이드 바 메뉴 그릴 때 roleGroup은 이걸로 확인
-  const [roleGroup, setRoleGroup] = useState(localStorage.getItem("roleGroup"));
+  const [roleGroups, setRoleGroups] = useState(localStorage.getItem("roleGroups"));
   
   //로그인 성공 시 이 핸들러 호출. 로그인 처리 및 권한 처리도 같이 진행한다.
-  const loginHandler = (token,roleGroup) => {
+  const loginHandler = (token,roleGroups) => {
     setToken(token);
     localStorage.setItem('token', token);
-
-    roleGroupAddHandler(roleGroup);
+    roleGroupAddHandler(roleGroups);
   };
   //로그아웃 진행 시 해당 핸들러 불러오면 된다. 로컬 스토리지에 존재하던 값 제거.
   const logoutHandler = () => {
@@ -28,22 +27,22 @@ export const AuthContextProvider = props => {
     roleGroupRemoveHandler();
   };
 
-  const roleGroupAddHandler = roleGroup => {
-    setRoleGroup(roleGroup);
-    localStorage.setItem('roleGroup', roleGroup);
+  const roleGroupAddHandler = roleGroups => {
+    setRoleGroups(roleGroups);
+    localStorage.setItem('roleGroups', roleGroups);
   }
 
   const roleGroupRemoveHandler = () => {
-    setRoleGroup(null);
-    localStorage.removeItem('roleGroup');
+    setRoleGroups(null);
+    localStorage.removeItem('roleGroups');
   }
 
   const loginContext = {
     token: token,
     isLoggedIn: userIsLoggedIn,
-    loginHandler: loginHandler,
-    logoutHandler: logoutHandler,
-    roleGroups: roleGroup,
+    login: loginHandler,
+    logout: logoutHandler,
+    roleGroups: roleGroups,
     roleGroupAddHandler: roleGroupAddHandler,
     roleGroupRemoveHandler: roleGroupRemoveHandler
   };

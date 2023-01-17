@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import { UserOutlined } from "@ant-design/icons";
-import { Input, message } from "antd";
+import { Input } from "antd";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../auth/loginAuthContext";
 import useCall from "../../hooks/apiCall";
@@ -7,14 +8,15 @@ import useCall from "../../hooks/apiCall";
 const Login = () => {
     const [ id, setId] = useState("");
     const [ password, setPassword ] = useState("");
+    //강제 로그인 시 권한 부여 
+    const roleGroups = ["ROLE_ADV", "ROLE_LOGIN"]
 
     const authContext = useContext(AuthContext);
     
     
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = async (event) => {
         // page refresh를 막아준다
         event.preventDefault();
-        console.log(authContext);
         //서버에 로그인 시도를 하여 로그인되면 루트 페이지("/")로 이동하고 실패할 경우 알럿을 표시한다.
         //현재 로그인 서버용으로는 인텔리J의 lego -> helloContorller
         // useCall.post("/post/login", { id: id, password : password })
@@ -37,19 +39,35 @@ const Login = () => {
         //         message.error("시스템 과부하로 로그인 시도가 실패했습니다. 관리자에게 문의해주세요.");
         //     });
 
+        //jsonServer 올라가있는 경우
+        // try{
+        //     const users = await (await fetch("http://localhost:9999/users")).json();
+        //     const user = users.find(user => user.id === id);
+        //     if(!user || user.password !== password){
+        //         throw new Error("로그인이 실패하였습니다. 다시 입력해주세요.");
+        //     }
+        //     console.log(user);
+        //     //토큰 받아왔다 치자..
+        //     const token = true;
+        //     useCall.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        //     authContext.login(token, user.roleGroup);
+            
+        // } catch(error){
+        //     console.log(`로그인 시도 도중 에러 : ${error}`);
+        //     alert("에러 발생 !!!")
+        // }
+
         //백엔드 안 올라가 있는 상태를 가정하여 이걸로 강제 로그인을 시도한다.
         //isLogin = true or false / roleGroup = ["ROLE_ADV", "ROLE_MGR"] 등..
-        const isLogin = true;
-        const roleGroup = ["ROLE_ADV","ROLE_MGR","ROLE_LOGIN"]
-        useCall.defaults.headers.common['Authorization'] = `Bearer ${isLogin}`;
-        authContext.loginHandler(isLogin, roleGroup);
-        //테스트
+        const token = true;
+        useCall.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        authContext.login(token, roleGroups);
     }
 
     return (
         <>
         <div className='content-header'>
-            <h2 className="fz-24 fw-smbold fc-10">로그인 페이지</h2>
+            <h2 className="fz-24 fw-smbold fc-10">로그인 페이지(현재 강제 로그인 가능 상태 - 권한 부여 : {roleGroups.map(item => <span key={item}>{item} /</span>)})</h2>
         </div>
         <div className='content-body'>
         <section className="wrap-section wrap-tbl">
@@ -67,7 +85,9 @@ const Login = () => {
                     <dl className="col-two">
                         <dt>
                             <div className="dt-inner">
-                                <span className="fz-16 fw-med fc-7">아이디 입력<a className="ico-tooltip" data-tip="true"></a></span>
+                                <span className="fz-16 fw-med fc-7">
+                                    아이디 입력 <a className="ico-tooltip" data-tip="true" href="#!"></a>
+                                </span>
                             </div>
                         </dt>
                         <dd>
@@ -81,7 +101,7 @@ const Login = () => {
                         </dd>
                         <dt>
                             <div className="dt-inner">
-                                <span className="fz-16 fw-med fc-7">비밀번호 입력<a className="ico-tooltip" data-tip="true"></a></span>
+                                <span className="fz-16 fw-med fc-7">비밀번호 입력<a className="ico-tooltip" data-tip="true" href="#!"></a></span>
                             </div>
                         </dt>
                         <dd>

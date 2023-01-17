@@ -18,14 +18,12 @@ const ChartSectionLayout = (props) => {
                             <>
                                 <div className="box-right">
                                     <ChartSelectBox
-                                        key={"leftSelect"} 
                                         defaultValue={props.leftDefaultValue} 
                                         optionList={props.chartSelectOptions} 
                                         setName={props.setLeftSelectName} 
                                         setValue={props.setLeftSelectValue}
                                     />
                                     <ChartSelectBox 
-                                        key={"rightSelect"} 
                                         defaultValue={props.rightDefaultValue} 
                                         optionList={props.chartSelectOptions} 
                                         setName={props.setRightSelectName} 

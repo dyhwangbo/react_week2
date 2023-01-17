@@ -3,7 +3,7 @@ import moment from "moment";
 import { useState } from "react";
 import GridSection from "../../../components/agGrid/gridSection";
 import { RangeDatePicker } from "../../../components/common/datepicker";
-import InputText from "../../../components/common/input/inputText";
+import { InnerInput } from "../../../components/common/input/input";
 import SelectBoxComponent from "../../../components/common/selectBox/selectBoxComponent";
 import ContentHeader from "../../../components/layouts/header/contentHeader";
 
@@ -25,7 +25,7 @@ const AdvReport03 = () => {
             component: [<SelectBoxComponent key={"searchDiv"} width={300} defaultValue={"itemNo"} placeholder={"홀더홀더"}optionList={searchDivOptions} changeFn={setSearchDiv} />]
         },{
             title: "검색어 입력",
-            component: [<InputText key={"searchText"} placeholder={"검색어 입려억~~"} value={searchText} onChange={setSearchText} />]
+            component: [<InnerInput name={"searchText"} placeholder={"검색어 입려억~~"} value={searchText} onChange={setSearchText} />]
         }
         , {
              title: "기간 조해33",

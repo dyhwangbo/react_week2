@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
 
 import './gsadp/css/fonts/Pretendard/fonts.css';
 import './gsadp/css/common.css';

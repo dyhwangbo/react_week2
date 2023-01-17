@@ -11,7 +11,6 @@ const GridMain = (props) => {
     //그리드 데이터
     const rowData = props.gridData;
     const columnDefs = props.columnDefs;
-    console.log(columnDefs);
     //실제 작업시에는 props로 불러오는 형태로 변경
     return (
         <>

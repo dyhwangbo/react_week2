@@ -1,5 +1,4 @@
 import { Button } from "../../../components/common/button";
-import InputText from "../../../components/common/input/inputText";
 import ContentHeader from "../../../components/layouts/header/contentHeader";
 import BoxHeaderComponent from "../../../components/layouts/section/table/header/boxHeaderComponent";
 

@@ -1,12 +1,13 @@
 import { ColDef, ICellRendererParams } from "ag-grid-community";
 import { Collapse, Typography, notification } from "antd";
+import { ChangeEvent } from "react";
 import { useRef, useState } from 'react';
 import ReactTooltip from "react-tooltip";
 import GridSection from "../../../components/agGrid/gridSection";
 import KwdRegGridSection from "../../../components/agGrid/kwdRegGridSection";
 import { Button } from "../../../components/common/button";
 import InputNumber from "../../../components/common/input/inputNumber";
-import InputText from "../../../components/common/input/inputText";
+import { InnerInput } from "../../../components/common/input";
 import { ModalComponent } from "../../../components/common/modal";
 import { AdGroupAddModalComponent } from "../../../components/common/modal/list/adGroupAddModalComponent";
 import SelectBoxComponent from "../../../components/common/selectBox/selectBoxComponent";
@@ -63,7 +64,7 @@ const AdReg = () => {
     const searchFilterOptions = [
         {
             title: "상품명 입력",
-            component: [<InputText key={"searchText"} placeholder={"검색어 입력해랏"} value={searchText} onChange={setSearchText} />]
+            component: [<InnerInput name={"searchText"} placeholder={"검색어 입력해랏"} value={searchText} onChange={setSearchText} />]
         },
         {
             title: "카테고리 선택",
@@ -78,6 +79,7 @@ const AdReg = () => {
     //상품 조회 이벤트. 조회 후에 판넬을 열어준다.
     const searchEvent = () => {
         const body = { searhcText : searchText, ct01: category01, ct02: category02, ct03: category03, ct04: category04 }
+        console.log(body);
         //apiCall이 필요하다..
         // apiCall.post("/post/searchAdGroupReport", body)
         // .then(res => { setReportData(res.data)})

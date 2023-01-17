@@ -30,10 +30,8 @@ const GridPagination = (props: any, ref: any) => {
 
   //그리드 페이지 당 얼만큼 보여줄지 이벤트
   const pagiantionSelectChange = (e) => {
-    console.log("pagiantionSelectChange")
-    console.log(e);
     setCurrentPageSize(e);
-    
+    gridRef.current!.api.paginationGoToFirstPage();
   }
   //처음으로 이동 이벤트
   const onBtFirst = () => {

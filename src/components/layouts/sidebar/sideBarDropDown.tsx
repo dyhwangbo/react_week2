@@ -5,7 +5,7 @@ const SidebarDropDown = () => {
         <>
             <div className="adv-account">
                 <div className="comp-dropdown">
-                    <a className="dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown">
+                    <a className="dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown" href="{() => false}">
                         <div className="box-left">
                             <div className="info-top">
                                 <i className="ico ico-mng-account"></i>

@@ -1,4 +1,5 @@
 import { AgGridReact } from "ag-grid-react";
+import moment from "moment";
 import React from "react";
 import { useCallback, useMemo, useRef } from "react";
 import EmptyGridLayout from "./layout/emptyGridLayout";
@@ -21,15 +22,14 @@ const GridSection = (props) => {
     //페이지네이션
     const paginationRef = useRef<any>(null);
     // 그리드에서 페이징 변경시 pagination 에 있는 함수 호출
-    const changePagination = () => {
-        paginationRef.current!.onPaginationChanged();
-    };
+    const changePagination = () => paginationRef.current!.onPaginationChanged();
+    
     //CSV EXPORT
     const csvExport = useCallback(() => {
-        gridRef.current!.api.exportDataAsCsv();
+        const fileName = props.csvFileName !== undefined ? props.csvFileName+"_" : "CSV 다운로드_";
+        gridRef.current!.api.exportDataAsCsv({ fileName : fileName+moment().format("YYYY-MM-DD") });
     }, []);
     
-    console.log("리랜더링 확인");
     return (
         <>
             <GridHeader title={props.title} csvBtn={props.csvBtn} csvExport={csvExport} />
@@ -43,7 +43,6 @@ const GridSection = (props) => {
                 changePagination={changePagination}
                 gridData={props.gridData} 
             />
-            {/* {props.pagination && <GridFooter />} */}
         </>
     )
 }

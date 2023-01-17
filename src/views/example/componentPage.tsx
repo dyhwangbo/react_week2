@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, DisabledButton, IcoButton } from "../../components/common/button";
-import InputText from "../../components/common/input/inputText";
+import { InnerInput } from "../../components/common/input/input";
 import SelectBoxComponent from "../../components/common/selectBox/selectBoxComponent";
 import ContentHeader from "../../components/layouts/header/contentHeader";
 import BoxHeaderComponent from "../../components/layouts/section/table/header/boxHeaderComponent";
@@ -79,8 +79,8 @@ const ComponentPage = () => {
                                                     <span className="table">
                                                         <span className="table-cell">
                                                             {/* input type="text" 컴포넌트 테스트. 옵션 설명은 각 컴포넌트 코드 참고 */}
-                                                            <InputText onChange={setInputText}>{inputText}</InputText>
-                                                            <InputText size="large" onChange={setInputText}>{inputText}</InputText>
+                                                            <InnerInput name="zxcvzxcv" value={inputText} placeholder="zxx" onChange={setInputText} />
+                                                            <InnerInput name="zxcvzxcv1" value={inputText} placeholder="zxx1" size="large" onChange={setInputText} />
                                                         </span>
                                                     </span>
                                                 </span>

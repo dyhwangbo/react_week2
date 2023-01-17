@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "adv",
+      "password": "1234",
+      "roleGroup": "ROLE_ADV",
+      "name": "임시 광고주우"
+    },
+    {
+      "id": "dev",
+      "password": "1234",
+      "roleGroup": "ROLE_MGR",
+      "name": "임시 개발자아"
+    }
+  ]
+}

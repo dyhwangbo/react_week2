@@ -1,14 +1,10 @@
 
-import { Drawer } from 'antd';
 import { useState } from 'react';
 
 
 /** 사이드바 => 유저 정보 */
 
 const SidebarUserInfo = () => {
-    //사이드바의 알림 Drawer 기능 처리
-    const [visibleInfo, setVisibleInfo] = useState(false);
-    
     return (
         <>
             <div className="user-info">

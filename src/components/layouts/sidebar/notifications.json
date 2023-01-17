@@ -1,0 +1,7 @@
+[
+    {"noticeId": "100", "title": "알림 테스트01", "description": "알림 테스트01010101010101"},
+    {"noticeId": "200", "title": "알림 테스트02", "description": "알림 테스트01010101010101"},
+    {"noticeId": "300", "title": "알림 테스트03", "description": "알림 테스트01010101010101"},
+    {"noticeId": "400", "title": "알림 테스트04", "description": "알림 테스트01010101010101"},
+    {"noticeId": "500", "title": "알림 테스트05", "description": "알림 테스트01010101010101"}
+]
